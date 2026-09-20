@@ -1,0 +1,17 @@
+# Example Compose file — copy to a project or local/ path before use.
+# Do not put production secrets in this tracked file.
+#
+#   cp docker/compose.example.yml local/compose.yml
+#   docker compose -f local/compose.yml up -d
+
+services:
+  # Lightweight always-on example (optional). Remove if unused.
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 86400 --cleanup
+    profiles:
+      - optional
