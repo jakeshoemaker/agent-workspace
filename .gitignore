@@ -3,10 +3,21 @@
 .env.*
 !.env.example
 
-# Secrets and SSH material
-secrets/
+# Secrets and SSH material (keep docs/placeholders)
+secrets/**
+!secrets/.gitkeep
+!secrets/README.md
 *.key
 *.pem
+id_rsa
+id_ed25519
+id_ecdsa
+authorized_keys
+
+# local/ machine-only (keep docs/placeholders)
+local/**
+!local/.gitkeep
+!local/README.md
 
 # Logs and temporary files
 *.log
@@ -17,3 +28,11 @@ tmp/
 .DS_Store
 .vscode/
 .idea/
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+
+# Backup files from install-dotfiles
+*.bak.*

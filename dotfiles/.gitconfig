@@ -1,0 +1,39 @@
+# Shared Git defaults for agent-workspace.
+# Override name/email in ~/.gitconfig.local (include below) — do not put secrets here.
+
+[include]
+	path = ~/.gitconfig.local
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = vim
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+
+[pull]
+	rebase = true
+
+[fetch]
+	prune = true
+
+[rebase]
+	autoStash = true
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[color]
+	ui = auto
+
+[diff]
+	algorithm = histogram
+
+[rerere]
+	enabled = true
+
+# Safer defaults for agents/humans on a shared box
+[advice]
+	detachedHead = false
