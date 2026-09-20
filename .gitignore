@@ -1,0 +1,19 @@
+# Machine-local files
+.env
+.env.*
+!.env.example
+
+# Secrets and SSH material
+secrets/
+*.key
+*.pem
+
+# Logs and temporary files
+*.log
+tmp/
+.cache/
+
+# OS/editor noise
+.DS_Store
+.vscode/
+.idea/
