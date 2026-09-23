@@ -21,6 +21,20 @@ check() {
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
+bashrc_is_symlink() { [[ -L "${HOME}/.bashrc" ]]; }
+
+tmux_conf_present() {
+  [[ -f "${HOME}/.config/tmux/tmux.conf" ]] || [[ -f "${HOME}/.tmux.conf" ]]
+}
+
+ssh_dir_is_700() {
+  [[ -d "${HOME}/.ssh" ]] || return 1
+
+  local mode
+  mode="$(stat -c '%a' "${HOME}/.ssh" 2>/dev/null || stat -f '%Lp' "${HOME}/.ssh")"
+  [[ "${mode}" == "700" ]]
+}
+
 echo "agent-workspace doctor"
 echo "host: $(hostname)  user: ${USER}  date: $(date -Is)"
 echo
@@ -38,9 +52,9 @@ check "sshd" have sshd
 echo
 
 echo "dotfiles"
-check "~/.bashrc is symlink" [[ -L "${HOME}/.bashrc" ]]
-check "tmux.conf present" [[ -f "${HOME}/.config/tmux/tmux.conf" ]] || [[ -f "${HOME}/.tmux.conf" ]]
-check "~/.ssh is 700" [[ -d "${HOME}/.ssh" && "$(stat -c '%a' "${HOME}/.ssh" 2>/dev/null || stat -f '%Lp' "${HOME}/.ssh")" == "700" ]]
+check "~/.bashrc is symlink" bashrc_is_symlink
+check "tmux.conf present" tmux_conf_present
+check "~/.ssh is 700" ssh_dir_is_700
 echo
 
 echo "services (best-effort)"
