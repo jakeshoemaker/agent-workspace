@@ -46,9 +46,11 @@ This repo is intentionally boring: plain Git dotfiles, shell install scripts, `j
 ├── AGENTS.md                 # notes for future agents on this box
 ├── docs/
 │   ├── install.md            # full install sequence
+│   ├── remote-agent-readiness.md # optional Herdr/Pi remote route checks
 │   ├── security.md           # SSH / Tailscale hardening
 │   └── recovery.md           # lockout and rebuild notes
 ├── scripts/                  # idempotent-ish bash installers
+├── tests/                    # lightweight regression checks
 ├── dotfiles/                 # vanilla home configs (symlinked)
 │   ├── .bashrc
 │   ├── .profile
@@ -85,6 +87,7 @@ Detailed steps: [`docs/install.md`](docs/install.md).
 9. Dotfiles: `just dotfiles` (backs up existing files, then symlinks).
 10. Copy `dotfiles/.ssh/config.example` → `~/.ssh/config` and adjust; never commit the result.
 11. `just doctor` to verify the environment.
+12. Optional supervised remote agent route: follow [`docs/remote-agent-readiness.md`](docs/remote-agent-readiness.md).
 
 ## Day-2 operations
 
@@ -92,6 +95,7 @@ Detailed steps: [`docs/install.md`](docs/install.md).
 just                  # list recipes
 just update           # apt + common tool refresh
 just doctor           # health checks
+just test             # lightweight regression checks
 just tmux-new NAME    # start a named session
 just tmux-ls          # list sessions
 ```

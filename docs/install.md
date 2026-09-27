@@ -98,7 +98,11 @@ just doctor
 tmux new -s main
 ```
 
-## 9. Optional Compose workloads
+## 9. Optional supervised remote agents
+
+If this NUC will run Firstmate-supervised Herdr/Pi work, complete the non-secret readiness checks in [`remote-agent-readiness.md`](remote-agent-readiness.md) before routing real project tasks there.
+
+## 10. Optional Compose workloads
 
 Copy `docker/compose.example.yml` to something under `local/` or a project dir and start stacks there. Keep production secrets out of git.
 
@@ -111,3 +115,4 @@ Copy `docker/compose.example.yml` to something under `local/` or a project dir a
 - [ ] `just harden-ssh` only after dual-path verify
 - [ ] `just doctor` clean enough to work
 - [ ] Named tmux session for long jobs
+- [ ] Optional Herdr/Pi remote-agent readiness checked before remote task routing
