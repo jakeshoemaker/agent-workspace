@@ -59,6 +59,10 @@ update:
 doctor:
 	{{repo}}/scripts/doctor.sh
 
+# Run lightweight regression checks.
+test:
+	{{repo}}/tests/doctor-user-env.sh
+
 # --- tmux helpers ---
 
 # Create or attach a named tmux session (default: main).

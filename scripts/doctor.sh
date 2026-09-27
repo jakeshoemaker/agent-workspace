@@ -35,8 +35,10 @@ ssh_dir_is_700() {
   [[ "${mode}" == "700" ]]
 }
 
+current_user="${USER:-$(id -un 2>/dev/null || printf 'unknown')}"
+
 echo "agent-workspace doctor"
-echo "host: $(hostname)  user: ${USER}  date: $(date -Is)"
+echo "host: $(hostname)  user: ${current_user}  date: $(date -Is)"
 echo
 
 echo "commands"
